@@ -103,7 +103,7 @@ class _HomePageState extends State<HomePage> {
                   context
                       .read<AuthenticationBloc>()
                       .add(AuthenticationLogoutPressed());
-                  Navigator.pop(context);
+                  scaffoldKey.currentState?.closeDrawer();
                 },
               ),
             ],
