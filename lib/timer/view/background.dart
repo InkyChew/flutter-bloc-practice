@@ -10,8 +10,8 @@ class Background extends StatelessWidget {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            Colors.blue.shade50,
-            Colors.blue.shade500,
+            Colors.deepPurple.shade50,
+            Colors.deepPurple.shade500,
           ],
         ),
       ),
