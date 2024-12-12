@@ -16,6 +16,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
+  static const List<String> _titleOptions = <String>[
+    'Counter',
+    'Timer',
+    'Posts',
+  ];
+
   static const List<Widget> _widgetOptions = <Widget>[
     CounterApp(),
     TimerApp(),
@@ -36,11 +42,15 @@ class _HomePageState extends State<HomePage> {
       (AuthenticationBloc bloc) => bloc.state.user.id,
     );
 
+    String formatUserId(String userId) =>
+        '${userId.substring(0, 3)}...${userId.substring(userId.length - 3)}';
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         key: scaffoldKey,
         appBar: AppBar(
+          title: Text(_titleOptions[_selectedIndex]),
           leading: Builder(
             builder: (context) {
               return IconButton(
@@ -63,31 +73,17 @@ class _HomePageState extends State<HomePage> {
                 decoration: BoxDecoration(
                   color: Colors.purple[50],
                 ),
-                child: Text(userId),
+                child: Text(formatUserId(userId)),
               ),
-              ListTile(
-                title: const Text('Counter'),
-                selected: _selectedIndex == 0,
-                onTap: () {
-                  _onItemTapped(0);
-                },
-              ),
-              ListTile(
-                title: const Text('Timer'),
-                selected: _selectedIndex == 1,
-                onTap: () {
-                  _onItemTapped(1);
-                  scaffoldKey.currentState?.closeDrawer();
-                },
-              ),
-              ListTile(
-                title: const Text('Posts'),
-                selected: _selectedIndex == 2,
-                onTap: () {
-                  _onItemTapped(2);
-                  scaffoldKey.currentState?.closeDrawer();
-                },
-              ),
+              ...List.generate(_titleOptions.length, (index) {
+                return ListTile(
+                    title: Text(_titleOptions[index]),
+                    selected: _selectedIndex == index,
+                    onTap: () {
+                      _onItemTapped(index);
+                      scaffoldKey.currentState?.closeDrawer();
+                    });
+              }),
               ListTile(
                 title: const Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
