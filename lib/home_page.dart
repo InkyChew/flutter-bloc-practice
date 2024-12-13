@@ -1,10 +1,12 @@
 import 'package:bloc_tutorial/counter_app.dart';
 import 'package:bloc_tutorial/post_app.dart';
 import 'package:bloc_tutorial/timer_app.dart';
+import 'package:bloc_tutorial/weather_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'authentication/bloc/authentication_bloc.dart';
+import 'package:weather_repository/weather_repository.dart'
+    show WeatherRepository;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,12 +22,14 @@ class _HomePageState extends State<HomePage> {
     'Counter',
     'Timer',
     'Posts',
+    'Weather'
   ];
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    CounterApp(),
-    TimerApp(),
-    PostApp(),
+  static final List<Widget> _widgetOptions = <Widget>[
+    const CounterApp(),
+    const TimerApp(),
+    const PostApp(),
+    WeatherApp(weatherRepository: WeatherRepository())
   ];
 
   void _onItemTapped(int index) {
