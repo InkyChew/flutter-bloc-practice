@@ -44,11 +44,22 @@ dependencies:
   stream_transform: ^2.1.0
   bloc_concurrency: ^0.2.5
   formz: ^0.8.0
+  hydrated_bloc: ^9.1.5
+  json_annotation: ^4.9.0
+  google_fonts: ^4.0.0
+  path_provider: ^2.0.8
+  weather_repository:
+    path: packages/weather_repository
+  toggle_switch: ^2.3.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  bloc_test: ^9.1.0
+  build_runner: ^2.4.13
+  json_serializable: ^6.9.0
+  test: ^1.25.7
+  mocktail: ^1.0.4
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
